@@ -35,7 +35,7 @@ int main()
     std::string input;
     std::cout << std::endl
               << "Please enter line to echo: ";
-    std::cin >> input;
+    getline(std::cin, input);
     args.push_back(input);
     rpc.send(21, args);
   }
