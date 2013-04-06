@@ -24,6 +24,12 @@ int main()
   testlist.push_back("one"+ddelimstr+"two");
   testlist.push_back("one"+ddelimstr+"two"+ddelimstr+"three");
   testlist.push_back("one"+ddelimstr+"two"+ddelimstr+"three"+delimstr+"four");
+  testlist.push_back(ddelimstr+delimstr+"one");
+  testlist.push_back("one"+ddelimstr+delimstr);
+  testlist.push_back("one"+ddelimstr+delimstr+"two");
+  testlist.push_back(ddelimstr+ddelimstr+"one");
+  testlist.push_back("one"+ddelimstr+ddelimstr);
+  testlist.push_back("one"+ddelimstr+ddelimstr+"two");
 
   //test with escape off
   for(std::list<std::string>::const_iterator it(testlist.begin());
