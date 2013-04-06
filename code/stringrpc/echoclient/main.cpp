@@ -29,10 +29,10 @@ int main()
 
   std::cout << "Successfully connected to RPC server" << std::endl;
   rpc.addCallback(21, &echoCallback);
-  while(true)
+  std::string input;
+  while(input != "quit")
   {
     Utilities::StringRPC::ArgsList args;
-    std::string input;
     std::cout << std::endl
               << "Please enter line to echo: ";
     getline(std::cin, input);
