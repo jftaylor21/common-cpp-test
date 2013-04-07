@@ -45,7 +45,7 @@ int main()
               << "Please enter line to echo: ";
     getline(std::cin, input);
     args.push_back(input);
-    rpc.send(21, args);
+    rpc.send(21, Utilities::StringRPC::CLIENTID_SERVER, args);
   }
 
   return 0;

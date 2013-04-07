@@ -13,7 +13,7 @@ void echoServerCallback(const Utilities::StringRPC::MessageID& msg,
   if (args.size())
   {
     std::cout << "server " << args[0] << std::endl;
-    rpcServer.send(msg, args, id);
+    rpcServer.send(msg, id, args);
   }
   else
   {
@@ -69,7 +69,7 @@ int main()
               << "Please enter line to echo: ";
     getline(std::cin, input);
     args.push_back(input);
-    rpcClient.send(21, args);
+    rpcClient.send(21, Utilities::StringRPC::CLIENTID_SERVER, args);
   }
 
   return 0;

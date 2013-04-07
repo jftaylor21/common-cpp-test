@@ -13,7 +13,7 @@ void echoCallback(const Utilities::StringRPC::MessageID& msg,
   if (args.size())
   {
     std::cout << "echo " << args[0] << std::endl;
-    rpc.send(msg, args, id);
+    rpc.send(msg, id, args);
   }
   else
   {
