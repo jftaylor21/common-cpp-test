@@ -6,14 +6,12 @@ Utilities::StringRPC rpcServer(true);
 Utilities::StringRPC rpcClient(false);
 std::string input;
 
-void echoServerCallback(const Utilities::StringRPC::MessageID& msg,
-                        const Utilities::StringRPC::ClientID& id,
-                        const Utilities::StringRPC::ArgsList& args)
+void echoServerCallback(const Utilities::StringRPC::Message& msg)
 {
-  if (args.size())
+  if (msg.args.size())
   {
-    std::cout << "server " << args[0] << std::endl;
-    rpcServer.send(msg, id, args);
+    std::cout << "server " << msg.args[0] << std::endl;
+    rpcServer.send(msg);
   }
   else
   {
@@ -21,13 +19,11 @@ void echoServerCallback(const Utilities::StringRPC::MessageID& msg,
   }
 }
 
-void echoClientCallback(const Utilities::StringRPC::MessageID& msg,
-                        const Utilities::StringRPC::ClientID& id,
-                        const Utilities::StringRPC::ArgsList& args)
+void echoClientCallback(const Utilities::StringRPC::Message& msg)
 {
-  if (args.size())
+  if (msg.args.size())
   {
-    std::cout << "client " << args[0] << std::endl;
+    std::cout << "client " << msg.args[0] << std::endl;
   }
   else
   {
@@ -53,11 +49,7 @@ int main()
     std::cout << "Server started." << std::endl;
   }
 
-  while (!rpcClient.initialize(serverIp, 44444))
-  {
-    std::cout << "Waiting for RPC client" << std::endl;
-    Utilities::sleep(100);
-  }
+  rpcClient.initialize(serverIp, 44444);
 
   std::cout << "Successfully connected to RPC server" << std::endl;
   rpcClient.addCallback(21, &echoClientCallback);

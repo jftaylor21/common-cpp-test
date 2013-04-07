@@ -6,14 +6,12 @@
 Utilities::StringRPC rpc(true);
 bool running(true);
 
-void echoCallback(const Utilities::StringRPC::MessageID& msg,
-                  const Utilities::StringRPC::ClientID& id,
-                  const Utilities::StringRPC::ArgsList& args)
+void echoCallback(const Utilities::StringRPC::Message& msg)
 {
-  if (args.size())
+  if (msg.args.size())
   {
-    std::cout << "echo " << args[0] << std::endl;
-    rpc.send(msg, id, args);
+    std::cout << "echo " << msg.args[0] << std::endl;
+    rpc.send(msg);
   }
   else
   {
