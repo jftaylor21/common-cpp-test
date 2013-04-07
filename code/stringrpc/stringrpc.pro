@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS *= echoclient \
            echoserver \
-           echoserverclient
+           echoserverclient \
+           chat
