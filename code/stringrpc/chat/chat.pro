@@ -1,4 +1,12 @@
-SOURCES *= $$PWD/main.cpp
+HEADERS *= $$PWD/MainMenu.h \
+           $$PWD/ChatServer.h \
+           $$PWD/ChatClient.h \
+           $$PWD/ChatCommon.h
+
+SOURCES *= $$PWD/main.cpp \
+           $$PWD/MainMenu.cpp \
+           $$PWD/ChatServer.cpp \
+           $$PWD/ChatClient.cpp
 
 CONFIG -= qt
 CONFIG *= console
