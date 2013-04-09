@@ -3,7 +3,8 @@
 #include <iostream>
 
 ChatClient::ChatClient()
-  : mRPC(false)
+  : mRPC(false),
+    mUsername("anonymous")
 {
   mRPC.addCallback(ChatCommon::MESSAGE_CHAT,
                    Utilities::StringRPC::MessageObjectCallback<ChatClient>(this, &ChatClient::onChat));
@@ -58,4 +59,9 @@ void ChatClient::onChat(const Utilities::StringRPC::Message &msg)
   {
     std::cout << "ChatClient::onChat: Not enough args" << std::endl;
   }
+}
+
+std::string ChatClient::username() const
+{
+  return mUsername;
 }

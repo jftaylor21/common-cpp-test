@@ -14,8 +14,11 @@ public:
 
   void onChat(const Utilities::StringRPC::Message& msg);
 
+  std::string username() const;
+
 private:
   Utilities::StringRPC mRPC;
+  std::string mUsername;
 };
 
 #endif

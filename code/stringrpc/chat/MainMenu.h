@@ -1,3 +1,6 @@
+#ifndef MAINMENU_H
+#define MAINMENU_H
+
 #include <utilities/utilities-cli-menu.h>
 #include <ChatClient.h>
 #include <ChatServer.h>
@@ -14,11 +17,11 @@ public:
   void joinServer();
 
 private:
-  bool joinServer(const std::string& ip, unsigned int port);
-
   ChatClient mClient;
   ChatServer mServer;
   std::string mUsername;
   std::string mIP;
   std::string mPort;
 };
+
+#endif

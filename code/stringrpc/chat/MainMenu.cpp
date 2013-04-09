@@ -1,4 +1,5 @@
 #include "MainMenu.h"
+#include "ChatMenu.h"
 #include <utilities/utilities-socket.h>
 #include <utilities/utilities-string.h>
 
@@ -13,7 +14,7 @@ MainMenu::MainMenu()
   addChoice("Username", Utilities::ObjectCallback0<MainMenu>(this, &MainMenu::setUsername), &mUsername);
   addChoice("Server IP Address", Utilities::ObjectCallback0<MainMenu>(this, &MainMenu::setIP), &mIP);
   addChoice("Server Port", Utilities::ObjectCallback0<MainMenu>(this, &MainMenu::setPort), &mPort);
-  addChoice("Create Server", Utilities::ObjectCallback0<MainMenu>(this, &MainMenu::createServer));
+  addChoice("Create and Join Server", Utilities::ObjectCallback0<MainMenu>(this, &MainMenu::createServer));
   addChoice("Join Server", Utilities::ObjectCallback0<MainMenu>(this, &MainMenu::joinServer));
 }
 
@@ -53,8 +54,29 @@ void MainMenu::setPort()
 
 void MainMenu::createServer()
 {
+  if (mServer.initialize(mIP, Utilities::toInt(mPort)))
+  {
+    std::cout << "Server initialized" << std::endl;
+    joinServer();
+  }
+  else
+  {
+    std::cout << "Failed to create server" << std::endl;
+  }
 }
 
 void MainMenu::joinServer()
 {
+  if (mClient.joinServer(mIP, Utilities::toInt(mPort)))
+  {
+    std::cout << "Joined Server" << std::endl;
+
+    mClient.setUsername(mUsername);
+    ChatMenu menu(mClient);
+    menu.display();
+  }
+  else
+  {
+    std::cout << "Failed to join server" << std::endl;
+  }
 }
