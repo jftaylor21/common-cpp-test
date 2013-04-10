@@ -52,7 +52,7 @@ void ChatClient::onChat(const Utilities::StringRPC::Message &msg)
   if (msg.args.size() > 1)
   {
     std::string username(msg.args[0]);
-    std::string chat(msg.args[2]);
+    std::string chat(msg.args[1]);
     std::cout << "Received: " << username << ": " << chat << std::endl;
   }
   else
