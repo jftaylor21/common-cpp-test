@@ -12,7 +12,7 @@ public:
   void sendChat();
 
 private:
-  ChatClient mClient;
+  ChatClient& mClient;
 };
 
 #endif
