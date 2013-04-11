@@ -17,7 +17,6 @@ public:
   void joinServer();
 
 private:
-  ChatClient mClient;
   ChatServer mServer;
   std::string mUsername;
   std::string mIP;

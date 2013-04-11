@@ -67,12 +67,13 @@ void MainMenu::createServer()
 
 void MainMenu::joinServer()
 {
-  if (mClient.joinServer(mIP, Utilities::toInt(mPort)))
+  ChatClient client;
+  if (client.joinServer(mIP, Utilities::toInt(mPort)))
   {
     std::cout << "Joined Server" << std::endl;
 
-    mClient.setUsername(mUsername);
-    ChatMenu menu(mClient);
+    client.setUsername(mUsername);
+    ChatMenu menu(client);
     menu.display();
   }
   else
